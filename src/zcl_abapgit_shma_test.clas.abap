@@ -1,19 +1,24 @@
-class ZCL_ABAPGIT_SHMA_TEST definition
-  public
-  final
-  create public
-  shared memory enabled .
+CLASS zcl_abapgit_shma_test DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC
+  SHARED MEMORY ENABLED .
 
-public section.
+  PUBLIC SECTION.
 
-  interfaces IF_SHM_BUILD_INSTANCE .
-protected section.
-private section.
+    INTERFACES if_shm_build_instance .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 
-  data TESTINGTEST type STRING .
+    DATA testingtest TYPE string .
 ENDCLASS.
 
 
 
-CLASS ZCL_ABAPGIT_SHMA_TEST IMPLEMENTATION.
+CLASS zcl_abapgit_shma_test IMPLEMENTATION.
+
+  METHOD if_shm_build_instance~build.
+
+  ENDMETHOD.
+
 ENDCLASS.
