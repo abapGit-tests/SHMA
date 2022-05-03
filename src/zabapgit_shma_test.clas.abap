@@ -4,17 +4,17 @@ class ZABAPGIT_SHMA_TEST definition
   final
   create private
 
-  global friends CL_SHM_AREA .
+  global friends CL_SHM_AREA.
 
 public section.
 
   constants AREA_NAME type SHM_AREA_NAME value 'ZABAPGIT_SHMA_TEST' ##NO_TEXT.
-  data ROOT type ref to ZCL_ABAPGIT_SHMA_TEST read-only .
+  data ROOT type ref to ZCL_ABAPGIT_SHMA_TEST read-only.
 
-  class-methods CLASS_CONSTRUCTOR .
+  class-methods CLASS_CONSTRUCTOR.
   class-methods GET_GENERATOR_VERSION
     returning
-      value(GENERATOR_VERSION) type I .
+      value(GENERATOR_VERSION) type I.
   class-methods ATTACH_FOR_READ
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -27,7 +27,7 @@ public section.
       CX_SHM_READ_LOCK_ACTIVE
       CX_SHM_EXCLUSIVE_LOCK_ACTIVE
       CX_SHM_PARAMETER_ERROR
-      CX_SHM_CHANGE_LOCK_ACTIVE .
+      CX_SHM_CHANGE_LOCK_ACTIVE.
   class-methods ATTACH_FOR_WRITE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -41,7 +41,7 @@ public section.
       CX_SHM_VERSION_LIMIT_EXCEEDED
       CX_SHM_CHANGE_LOCK_ACTIVE
       CX_SHM_PARAMETER_ERROR
-      CX_SHM_PENDING_LOCK_REMOVED .
+      CX_SHM_PENDING_LOCK_REMOVED.
   class-methods ATTACH_FOR_UPDATE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -57,68 +57,72 @@ public section.
       CX_SHM_VERSION_LIMIT_EXCEEDED
       CX_SHM_CHANGE_LOCK_ACTIVE
       CX_SHM_PARAMETER_ERROR
-      CX_SHM_PENDING_LOCK_REMOVED .
+      CX_SHM_PENDING_LOCK_REMOVED.
   class-methods DETACH_AREA
     returning
-      value(RC) type SHM_RC .
+      value(RC) type SHM_RC.
   class-methods INVALIDATE_INSTANCE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
+      !AFFECT_SERVER type SHM_AFFECT_SERVER default CL_SHM_AREA=>AFFECT_LOCAL_SERVER
     preferred parameter INST_NAME
     returning
       value(RC) type SHM_RC
     raising
-      CX_SHM_PARAMETER_ERROR .
+      CX_SHM_PARAMETER_ERROR.
   class-methods INVALIDATE_AREA
     importing
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
+      !AFFECT_SERVER type SHM_AFFECT_SERVER default CL_SHM_AREA=>AFFECT_LOCAL_SERVER
     returning
       value(RC) type SHM_RC
     raising
-      CX_SHM_PARAMETER_ERROR .
+      CX_SHM_PARAMETER_ERROR.
   class-methods FREE_INSTANCE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
+      !AFFECT_SERVER type SHM_AFFECT_SERVER default CL_SHM_AREA=>AFFECT_LOCAL_SERVER
     preferred parameter INST_NAME
     returning
       value(RC) type SHM_RC
     raising
-      CX_SHM_PARAMETER_ERROR .
+      CX_SHM_PARAMETER_ERROR.
   class-methods FREE_AREA
     importing
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
+      !AFFECT_SERVER type SHM_AFFECT_SERVER default CL_SHM_AREA=>AFFECT_LOCAL_SERVER
     returning
       value(RC) type SHM_RC
     raising
-      CX_SHM_PARAMETER_ERROR .
+      CX_SHM_PARAMETER_ERROR.
   class-methods GET_INSTANCE_INFOS
     importing
       !INST_NAME type SHM_INST_NAME optional
     returning
-      value(INFOS) type SHM_INST_INFOS .
+      value(INFOS) type SHM_INST_INFOS.
   class-methods BUILD
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
     raising
       CX_SHMA_NOT_CONFIGURED
       CX_SHMA_INCONSISTENT
-      CX_SHM_BUILD_FAILED .
+      CX_SHM_BUILD_FAILED.
   methods SET_ROOT
     importing
       !ROOT type ref to ZCL_ABAPGIT_SHMA_TEST
     raising
       CX_SHM_INITIAL_REFERENCE
-      CX_SHM_WRONG_HANDLE .
+      CX_SHM_WRONG_HANDLE.
 
   methods GET_ROOT
-    redefinition .
-protected section.
+    redefinition.
+  PROTECTED SECTION.
 private section.
 
-  constants _VERSION_ type I value 23 ##NO_TEXT.
-  class-data _TRACE_SERVICE type ref to IF_SHM_TRACE .
+  constants _VERSION_ type I value 25 ##NO_TEXT.
+  class-data _TRACE_SERVICE type ref to IF_SHM_TRACE.
   class-data _TRACE_ACTIVE type ABAP_BOOL value ABAP_FALSE ##NO_TEXT.
   constants _TRANSACTIONAL type ABAP_BOOL value ABAP_FALSE ##NO_TEXT.
   constants _CLIENT_DEPENDENT type ABAP_BOOL value ABAP_FALSE ##NO_TEXT.
@@ -127,7 +131,7 @@ ENDCLASS.
 
 
 
-CLASS ZABAPGIT_SHMA_TEST IMPLEMENTATION.
+CLASS zabapgit_shma_test IMPLEMENTATION.
 
 
   method ATTACH_FOR_READ.
@@ -746,8 +750,7 @@ CLASS ZABAPGIT_SHMA_TEST IMPLEMENTATION.
     l_client TYPE shm_client,
     l_client_supplied TYPE abap_bool VALUE abap_false.
 
-  CONSTANTS: affect_server TYPE shm_affect_server
-             VALUE cl_shm_area=>affect_local_server.
+* GEN_INFO_INSERT_AFFECT_LOCAL_SERVER
 
 
 * >
@@ -782,8 +785,7 @@ CLASS ZABAPGIT_SHMA_TEST IMPLEMENTATION.
     l_client TYPE shm_client,
     l_client_supplied TYPE abap_bool VALUE abap_false.
 
-  CONSTANTS: affect_server TYPE shm_affect_server
-             VALUE cl_shm_area=>affect_local_server.
+* GEN_INFO_INSERT_AFFECT_LOCAL_SERVER
 
 
 * >
@@ -938,8 +940,7 @@ CLASS ZABAPGIT_SHMA_TEST IMPLEMENTATION.
     l_client TYPE shm_client,
     l_client_supplied TYPE abap_bool VALUE abap_false.
 
-  CONSTANTS: affect_server TYPE shm_affect_server
-             VALUE cl_shm_area=>affect_local_server.
+* GEN_INFO_INSERT_AFFECT_LOCAL_SERVER
 
 
 * >
@@ -974,8 +975,7 @@ CLASS ZABAPGIT_SHMA_TEST IMPLEMENTATION.
     l_client TYPE shm_client,
     l_client_supplied TYPE abap_bool value abap_false.
 
-  CONSTANTS: affect_server TYPE shm_affect_server
-             VALUE cl_shm_area=>affect_local_server.
+* GEN_INFO_INSERT_AFFECT_LOCAL_SERVER
 
 
 * >
