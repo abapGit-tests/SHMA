@@ -15,6 +15,7 @@ public section.
   class-methods GET_GENERATOR_VERSION
     returning
       value(GENERATOR_VERSION) type I.
+
   class-methods ATTACH_FOR_READ
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -61,6 +62,7 @@ public section.
   class-methods DETACH_AREA
     returning
       value(RC) type SHM_RC.
+
   class-methods INVALIDATE_INSTANCE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -71,6 +73,7 @@ public section.
       value(RC) type SHM_RC
     raising
       CX_SHM_PARAMETER_ERROR.
+
   class-methods INVALIDATE_AREA
     importing
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
@@ -79,6 +82,7 @@ public section.
       value(RC) type SHM_RC
     raising
       CX_SHM_PARAMETER_ERROR.
+
   class-methods FREE_INSTANCE
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
@@ -89,6 +93,7 @@ public section.
       value(RC) type SHM_RC
     raising
       CX_SHM_PARAMETER_ERROR.
+
   class-methods FREE_AREA
     importing
       !TERMINATE_CHANGER type ABAP_BOOL default ABAP_TRUE
@@ -97,11 +102,13 @@ public section.
       value(RC) type SHM_RC
     raising
       CX_SHM_PARAMETER_ERROR.
+
   class-methods GET_INSTANCE_INFOS
     importing
       !INST_NAME type SHM_INST_NAME optional
     returning
       value(INFOS) type SHM_INST_INFOS.
+
   class-methods BUILD
     importing
       !INST_NAME type SHM_INST_NAME default CL_SHM_AREA=>DEFAULT_INSTANCE
